@@ -1,6 +1,8 @@
 
+import os
 from flask import Flask,render_template
 from read_data_mysql import *
+from load_data_mysql import * 
 
 app = Flask(__name__)
 
@@ -9,5 +11,11 @@ def main():
 	prices= read_data('msft')
 	return render_template('main.html', prices=prices)
 
-if __name__ == '__main__':
-	app.run(debug=True)
+@app.route('/load')
+def load():
+	load_tables()
+	
+if __name__ == "__main__":
+	port = int(os.environ.get("PORT", 5000))
+	app.run(port=port)
+
