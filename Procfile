@@ -1,2 +1,1 @@
-web: gunicorn test_gunicorn:main
-web: python router.py
+web: python router.py 
